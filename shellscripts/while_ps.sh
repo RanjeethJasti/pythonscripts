@@ -2,7 +2,7 @@
 
 Cont="Y"
 while [ $Cont = "Y" ]; do
-  ps -A
+  w
   read -p "want to continue? (Y/N)" reply
   Cont=`echo $reply | tr [:lower:] [:upper:]`
 done

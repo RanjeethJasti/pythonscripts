@@ -2,14 +2,16 @@
 
 # if no command line arg given
 # set rental to Unknown
-if [ -z $1 ]
-then
-  rental="*** Unknown vehicle ***"
-elif [ -n $1 ]
-then
+#if [ -z $1 ]
+#then
+#  rental="*** Unknown vehicle ***"
+#elif [ -n $1 ]
+#then
 # otherwise make first arg as a rental
-  rental=$1
-fi
+#  rental=$1
+#fi
+
+read -p "Enter the vehicle you want to rent: " rental
 
 # use case statement to make decision for rental
 case $rental in

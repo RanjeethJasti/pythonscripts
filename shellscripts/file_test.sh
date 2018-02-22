@@ -4,7 +4,6 @@ read filename
 if [ -f "$filename" ]
  then
    echo "$filename is a file"
- exit 1
  elif [ -d "$filename" ]
    then
    echo "$filename is a directory"

@@ -1,5 +1,6 @@
 #!/bin/bash
 # A shell script to backup mysql, webserver and files to tape
+
 opt=$1
 case $opt in
         sql)
@@ -12,7 +13,7 @@ case $opt in
                 echo "Running tape backup using tar tool..."
                 ;;
         *)
-        	    echo "Backup shell script utility"
+        	echo "Backup shell script utility"
                 echo "Usage: $0 {sql|sync|tar}"
                 echo "	sql  : Run mySQL backup utility."
                 echo "	sync : Run web server backup utility."	
