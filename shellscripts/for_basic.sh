@@ -1,6 +1,8 @@
 #!/bin/bash
 
-for i in 7 9 2 3 4 5
+cd /home/vagrant/script_backup
+
+for filename in `ls` 
 do
-   echo $i
+   rm $filename
 done

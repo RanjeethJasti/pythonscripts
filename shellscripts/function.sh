@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# system_page - A script to produce an system information HTML file
+# system_page - A script to produce a system information HTML file
 
 ##### Constants
 
@@ -9,11 +9,14 @@ RIGHT_NOW=$(date +"%x %r %Z")
 TIME_STAMP="Updated on $RIGHT_NOW by $USER"
 
 ##### Functions
-hostname
-function show_uptime
+
+#function show_uptime
+
+show_uptime()
+
 {
 
-echo "<h2>System uptime</h2>"
+    echo "<h2>System uptime</h2>"
     echo "<pre>"
     uptime
     echo "</pre>"
@@ -21,8 +24,9 @@ echo "<h2>System uptime</h2>"
 
 
 function drive_space
+
 {
-echo "<h2>Filesystem space</h2>"
+    echo "<h2>Filesystem space</h2>"
     echo "<pre>"
     df -h
     echo "</pre>"
@@ -32,7 +36,7 @@ echo "<h2>Filesystem space</h2>"
 
 function home_space
 {
-   echo "<h2>Home directory space by user</h2>"
+    echo "<h2>Home directory space by user</h2>"
     echo "<pre>"
     echo "Bytes Directory"
     du -s /home/* | sort -nr
@@ -45,11 +49,11 @@ function home_space
 ##### Main
 
 cat <<- _EOF_
-  <html>
-  <head>
-      <title>$TITLE</title>
-</head>
-<body>
+   <html>
+   <head>
+   <title>$TITLE</title>
+   </head>
+   <body>
       <h1>$TITLE</h1>
       <p>$TIME_STAMP</p>
       $(show_uptime)
@@ -58,3 +62,4 @@ cat <<- _EOF_
   </body>
   </html>
 _EOF_
+
