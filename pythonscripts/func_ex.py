@@ -1,7 +1,8 @@
+#!/usr/bin/python
+
 def add_func(a, b):
 
-        """A function to add 3
-        numbers"""
+        """A function to add 2 numbers"""
         x = a + b
         return(x)
 
@@ -17,8 +18,6 @@ def div_func(a, b):
 
 	x = a / b
 	return x
-
-
 
 
 sum = add_func(10, 20)

@@ -10,13 +10,15 @@ while line <= 10 :
                 print pos,
                 
                 #increment the value of pos by one
-                pos += 1
+                #pos += 1
+		pos = pos + 1
 
         else:
                 #This print will add newline after printing the value
                 print pos
         
         #increment the value of line by one
-        line += 1
+        #line += 1
+ 	line = line + 1
         
 

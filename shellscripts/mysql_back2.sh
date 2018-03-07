@@ -1,4 +1,4 @@
-i#!/bin/bash
+#!/bin/bash
 # Simple script to backup MySQL databases
 
 # Parent backup directory
@@ -6,7 +6,7 @@ backup_parent_dir="/var/backups/mysql"
 
 # MySQL settings
 mysql_user="root"
-mysql_password=""
+mysql_password="admin@123"
 
 # Read MySQL password from stdin if empty
 if [ -z "${mysql_password}" ]; then
