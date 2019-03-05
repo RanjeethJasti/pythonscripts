@@ -1,5 +1,19 @@
 #!/usr/bin/python
-import MySQLdb as my
+import MySQLdb as mydb
+import sys
+
+
+"""
+dbname = cust_details
+tablename = accnt_details
+
+fields: CustID, name, address, balance
+
+
+create table accnt_details( CustID INT NOT NULL, name VARCHAR(100) NOT NULL, address VARCHAR(200), balance FLOAT );
+
+insert into accnt_details VALUES(1000,'Joseph', 'XYZ - 123', 5000.0)
+"""
 
 
 class Customer():
@@ -14,12 +28,15 @@ class Customer():
     def __init__(self, cust_id):
         """Return a Customer object whose name is *name*.""" 
         self.cust_id = cust_id
-	try:
-        	self.db = my.connect(host="127.0.0.1", user="root", passwd="root@123", db="cust_details")
-	except:
-		print "DB connection error"
-        self.cursor = self.db.cursor()
 
+        try:
+            self.db = mydb.connect(host="127.0.0.1", user="root", passwd="admin@123", db="cust_details")
+        except Exception as e:
+            print "DB connection error"
+            print e
+            sys.exit(1)
+        
+        self.cursor = self.db.cursor()
         if cust_id != 0:
             sql = "select balance from accnt_details where CustID=%d" % cust_id
             self.cursor.execute(sql)
@@ -29,13 +46,15 @@ class Customer():
     def cust_registration(self):
 
         sql = "select MAX(CustID) from accnt_details"
+        
         try:
             self.cursor.execute(sql)
             data = self.cursor.fetchone()
             next_cust_id = int(data[0]) + 1
         except Exception as e:
             print "Error with db operation1"
-            exit(1)
+            sys.exit(1)
+
         name = raw_input("Name: ")
         address = raw_input("Address:")
         init_balance = input("Amount you need to deposit: ")
@@ -47,14 +66,14 @@ class Customer():
             print "Customer %s added successfullly.. %d is your customer ID" % (name, next_cust_id)
         except Exception as e:
             print  e
-            exit(1)
+            sys.exit(1)
 
     def withdraw(self, amount):
         """Return the balance remaining after withdrawing *amount*
         dollars."""
         if amount > self.balance:
             print 'Insufficient balance'
-	    exit(0)
+            sys.exit(0)
         self.balance -= amount
         #Same as self.balance = self.balance - amount
 
@@ -66,12 +85,14 @@ class Customer():
             self.db.close()
         except Exception as e:
             print  e
-            exit(1)
+            sys.exit(1)
+
         return self.balance
 
     def deposit(self, amount):
         """Return the balance remaining after depositing *amount*
         dollars."""
+
         self.balance += amount
         #Same as self.balance = self.balance + amount
 
@@ -83,7 +104,7 @@ class Customer():
             self.db.close()
         except Exception as e:
             print  e
-            exit(1)
+            sys.exit(1)
 
         return self.balance
 
@@ -118,7 +139,7 @@ def main():
                 print "You have $ %d in your account!!!" % result
         else:
                 print "Invalid option"
-                exit(1)
+                sys.exit(1)
 
     elif mode == 2:
 

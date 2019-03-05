@@ -1,0 +1,30 @@
+{
+"id": "<ID>",
+"container": {
+"type": "DOCKER",
+"docker": {
+"image": "josephthomas/<SITENAME>:<TAG>",
+"network": "BRIDGE",
+"portMappings": [
+{ "hostPort": 0, "containerPort": 80, "servicePort": 0 }
+],
+"forcePullImage":true
+}
+},
+"instances": 3,
+"cpus": 0.5,
+"mem": 128,
+"healthChecks": [{
+"protocol": "HTTP",
+"path": "/",
+"portIndex": 0,
+"timeoutSeconds": 10,
+"gracePeriodSeconds": 10,
+"intervalSeconds": 2,
+"maxConsecutiveFailures": 10
+}],
+ "upgradeStrategy": {
+        "minimumHealthCapacity": 0.5,
+        "maximumOverCapacity": 0
+    }
+}

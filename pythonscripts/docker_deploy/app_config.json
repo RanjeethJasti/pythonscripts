@@ -1,0 +1,36 @@
+{
+    "container": {
+        "docker": {
+            "portMappings": [
+                {
+                    "servicePort": 0, 
+                    "containerPort": 80, 
+                    "hostPort": 0
+                }
+            ], 
+            "image": "josephthomas/mysite:9", 
+            "network": "BRIDGE", 
+            "forcePullImage": true
+        }, 
+        "type": "DOCKER"
+    }, 
+    "mem": 128, 
+    "cpus": 0.5, 
+    "instances": 3, 
+    "upgradeStrategy": {
+        "maximumOverCapacity": 0, 
+        "minimumHealthCapacity": 0.5
+    }, 
+    "healthChecks": [
+        {
+            "portIndex": 0, 
+            "protocol": "HTTP", 
+            "timeoutSeconds": 10, 
+            "intervalSeconds": 2, 
+            "gracePeriodSeconds": 10, 
+            "maxConsecutiveFailures": 10, 
+            "path": "/"
+        }
+    ], 
+    "id": "mysite-blue"
+}
