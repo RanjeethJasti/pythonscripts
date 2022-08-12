@@ -1,27 +1,22 @@
 import boto3
 
-client = boto3.client('ec2', region_name='us-west-2')
+client = boto3.client('ec2')
 
 response = client.run_instances(
-    BlockDeviceMappings=[
-        {
-            'DeviceName': '/dev/xvda',
-            'Ebs': {
-
-                'DeleteOnTermination': True,
-                'VolumeSize': 8,
-                'VolumeType': 'gp2'
-            },
-        },
-    ],
-    ImageId='ami-6cd6f714',
-    InstanceType='t3.micro',
+    ImageId='ami-090fa75af13c156b4',
+    InstanceType='t2.micro',
     MaxCount=1,
     MinCount=1,
-    Monitoring={
-        'Enabled': False
-    },
-    SecurityGroupIds=[
-        'sg-1f39854x',
+    NetworkInterfaces=[
+        {
+            'AssociatePublicIpAddress': True,
+            'DeviceIndex': 0,
+            'SubnetId': 'subnet-0b24383d565f1f9e1',
+        	'Groups': [
+                'sg-04417becf67b0a812',
+            ],
+        },
     ],
 )
+
+print(response)
